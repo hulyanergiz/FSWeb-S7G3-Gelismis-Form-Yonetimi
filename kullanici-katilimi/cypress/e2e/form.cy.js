@@ -121,18 +121,21 @@ describe("Member Registration Form Test", () => {
       "have.text",
       "Must include uppercase, lowercase, number, symbol and must be at least 8 chars long."
     );
+    cy.get("input[name='password']").clear();
     cy.get("input[name='password']").type(invalidMember.password3);
     cy.get("[data-cy='error']").should("have.length", 1);
     cy.get("[data-cy='error']").should(
       "have.text",
       "Must include uppercase, lowercase, number, symbol and must be at least 8 chars long."
     );
+    cy.get("input[name='password']").clear();
     cy.get("input[name='password']").type(invalidMember.password4);
     cy.get("[data-cy='error']").should("have.length", 1);
     cy.get("[data-cy='error']").should(
       "have.text",
       "Must include uppercase, lowercase, number, symbol and must be at least 8 chars long."
     );
+    cy.get("input[name='password']").clear();
     cy.get("input[name='password']").type(invalidMember.password5);
     cy.get("[data-cy='error']").should("have.length", 1);
     cy.get("[data-cy='error']").should(

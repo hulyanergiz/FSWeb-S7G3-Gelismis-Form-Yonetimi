@@ -25,8 +25,7 @@ const formSchema = yup.object().shape({
       .required("Must include email address.").notOneOf(props.users,"Email already registered."),
     password: yup.string()
     .required("Password is Required")
-      .matches(
-        /^(?=.*\d)(?=.*[!@#$%^&*.,/-_+<^$?)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+      .matches(/^(?=.*\d)(?=.*[!@#$%^&*-+/:;?<()[{}>.,])(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
         "Must include uppercase, lowercase, number, symbol and must be at least 8 chars long."
       )
       ,
