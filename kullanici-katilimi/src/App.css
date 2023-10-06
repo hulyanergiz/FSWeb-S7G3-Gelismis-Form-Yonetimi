@@ -13,13 +13,20 @@ label {
 .terms {
   width: 500px;
 }
+.error:before {
+  display: none;
+}
 .error {
   size: 0.7em;
   color: red;
-  border: 1px solid red;
   width: 505px;
   border-radius: 5px;
   background-color: rgb(245, 198, 198);
+}
+h4 {
+  font-weight: 300;
+  color: brown;
+  margin-top: 0;
 }
 /* .App {
   text-align: center;
