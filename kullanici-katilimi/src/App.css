@@ -1,7 +1,18 @@
 .App {
-  text-align: center;
+  margin-top: 10%;
+  margin-left: 30%;
 }
-
+label {
+  width: 100px;
+  display: inline-block;
+}
+.input {
+  width: 500px;
+  display: inline-block;
+}
+.terms {
+  width: 500px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
