@@ -1,7 +1,17 @@
 import React, { useState } from "react";
-const Form = () => {
+const Form = (props) => {
+  const { addMember, editMemberFn, editMember } = props;
   const initialState = { name: "", email: "", password: "", terms: false };
   const [formData, setFormData] = useState(initialState);
+  const [formErrors, setFormErrors] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [roller, setRoller] = useState(["Frontend", "Backend", "DevOps"]);
+
+  const reset = () => {
+    setFormData(initialFormData);
+    setFormErrors({});
+    setIsFormValid(false);
+  };
 
   return (
     <form>
