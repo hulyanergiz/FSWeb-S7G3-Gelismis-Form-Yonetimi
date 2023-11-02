@@ -1,5 +1,6 @@
 import "./App.css";
 import Form from "./components/Form";
+import { useState } from "react";
 
 function App() {
   const [memberList, setMemberList] = useState([]);
@@ -33,12 +34,8 @@ function App() {
           <li key={idx}>
             {member.isim},<a href={`mailto:${member.email}`}>{member.email}</a>,
             {member.rol}
-            <button
-              onClick={() => {
-                setEditMember(member);
-              }}
-            >
-              Düzenle
+            <button type="button" onClick={() => setEditMember(member)}>
+              Edit
             </button>
           </li>
         ))}
