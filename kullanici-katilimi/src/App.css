@@ -1,6 +1,7 @@
 .App {
   margin-top: 10%;
   margin-left: 30%;
+  font-size: 1.5rem;
 }
 label {
   width: 100px;
@@ -8,11 +9,15 @@ label {
 }
 .input {
   width: 500px;
+  height: 30px;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
   display: inline-block;
 }
 .terms {
   width: 500px;
 }
+
 .error:before {
   display: none;
 }
@@ -28,6 +33,7 @@ h4 {
   color: brown;
   margin-top: 0;
 }
+
 /* .App {
   text-align: center;
 } */
