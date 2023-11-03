@@ -2,7 +2,7 @@ import React,{ useState,useEffect} from "react";
 import axios from "axios";
 import * as yup from 'yup';
 const Form=(props)=>{
-    
+  const {duzenlenecekUye,editMember, addNewUser } = props;    
     const initialForm={
         name:'',
         email:'',
@@ -15,6 +15,18 @@ const [isValid, setIsValid] = useState(false);
     email: "",
     password: "",
     terms:""});
+    const reset = () => {
+      setFormData(initialForm)
+      setErrors({})
+      setIsValid(false)
+    }
+    
+    useEffect(() => {
+      console.log("useEffect çalıştı");
+      if (duzenlenecekUye) {
+        setFormData(duzenlenecekUye);
+      }
+    }, [duzenlenecekUye]);
 const formSchema = yup.object().shape({
     name: yup.string()
 
@@ -57,15 +69,27 @@ yup.reach(formSchema, name)
     }
 const submitHandler=(event)=>{
     event.preventDefault();
+    if (duzenlenecekUye) {
     axios
       .post("https://reqres.in/api/users", formData)
       .then((res) => {
-        props.addNewUser(res.data)})
-       // props.users
+        editMember(res.data)})
       .catch((error) => {
         console.log(error.response.message);
       });
     setFormData(initialForm);
+}else {
+  axios.post('https://reqres.in/api/s7g3', formData)
+				.then(function (response) {
+					console.log(response);
+					addNewUser(response.data);
+					reset();
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+
+}
 }
 
 return (
@@ -90,12 +114,17 @@ return (
             {errors.password && <p className="error" data-cy="error">{errors.password}</p>}
             </div>
             <div>
+            <label className="terms checkbox" htmlFor="terms">
             <input onChange={changeHandler} checked={formData.terms} name="terms" type="checkbox" id="terms"/>
-            <label className="terms" htmlFor="terms">I agree <a href="./components/Terms">Terms and Conditions</a></label>
+            I agree <a href="./components/Terms">Terms and Conditions</a></label>
             {/* <p className="error" data-cy="error">{errors.terms}</p> */}
             {errors.terms && <p className="error" data-cy="error">{errors.terms}</p>}
             </div>
-            <button disabled={!isValid} type="submit">Sign Up</button>
+            <div>
+            {duzenlenecekUye?(<button type="submit">Accept Edit</button>):(<button disabled={!isValid} type="submit">Sign Up</button>)
+
+            }
+            </div>
     </form>
 )
 }
